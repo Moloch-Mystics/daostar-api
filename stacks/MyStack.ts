@@ -1,9 +1,17 @@
-import { StackContext, Api } from "@serverless-stack/resources";
+import { Api, StackContext } from "@serverless-stack/resources";
 
 export function MyStack({ stack }: StackContext) {
-  new Api(stack, "api", {
+  // Create the HTTP API
+  const api = new Api(stack, "Api", {
     routes: {
-      "GET /": "functions/lambda.handler",
+      "GET /notes": "functions/list.handler",
+      "GET /notes/{id}": "functions/get.handler",
+      "PUT /notes/{id}": "functions/update.handler",
     },
+  });
+
+  // Show the API endpoint in the output
+  stack.addOutputs({
+    ApiEndpoint: api.url,
   });
 }
