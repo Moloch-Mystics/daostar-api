@@ -6,11 +6,11 @@ export function MyStack({ stack }: StackContext) {
         routes: {
             'GET /members/{id}': 'functions/getMembers.handler',
         },
-        customDomain: {
-            domainName: "sandbox.logos.xyz",
-            hostedZone: "sandbox.logos.xyz",
-            path: "api/v1",
-        },
+        // customDomain: {
+        //     domainName: "sandbox.logos.xyz",
+        //     hostedZone: "sandbox.logos.xyz",
+        //     path: "api/v1",
+        // },
     })
 
     // Show the API endpoint in the output

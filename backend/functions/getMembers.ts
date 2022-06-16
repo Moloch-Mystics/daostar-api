@@ -1,4 +1,16 @@
 import { APIGatewayProxyHandlerV2 } from 'aws-lambda'
+import fetch from 'node-fetch'
+
+function apiRequest(path: string, method: string, data: any) {
+    return fetch(path, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        method,
+        redirect: 'follow',
+        body: JSON.stringify(data),
+    }).then((res) => res.json())
+}
 
 export const handler: APIGatewayProxyHandlerV2 = async (event) => {
     const eventId = event?.pathParameters?.id
@@ -10,13 +22,37 @@ export const handler: APIGatewayProxyHandlerV2 = async (event) => {
         },
         type: 'DAO',
         name: eventId,
-        members: [],
     }
 
-    return template
+    const query = `query GetMembers($dao: String!) {
+        memberUri(id: $dao) {
+          id
+          members {
+            id
+          }
+        }
+      }`
+
+    const path = 'https://api.thegraph.com/subgraphs/name/alexkeating/daostar-moloch'
+
+    const data = {
+        query,
+        variables: { dao: eventId },
+    }
+
+    const res = (await apiRequest(path, 'POST', data)) as any
+    console.log({ res })
+
+    const members = res.data.memberUri.members
+
+    console.log({ members })
+
+    const transformed = { members, ...template }
+
+    return transformed
         ? {
               statusCode: 200,
-              body: JSON.stringify(template),
+              body: JSON.stringify(transformed),
           }
         : {
               statusCode: 404,

@@ -23,6 +23,7 @@
     "backend"
   ],
   "dependencies": {
-    "aws-lambda": "^1.0.7"
+    "aws-lambda": "^1.0.7",
+    "node-fetch": "^3.2.6"
   }
 }
