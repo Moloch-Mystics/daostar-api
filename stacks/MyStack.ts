@@ -5,6 +5,7 @@ export function MyStack({ stack }: StackContext) {
     const api = new Api(stack, 'Api', {
         routes: {
             'GET /members/{id}': 'functions/getMembers.handler',
+            'GET /proposals/{id}': 'functions/getProposals.handler',
         },
         // customDomain: {
         //     domainName: "sandbox.logos.xyz",
