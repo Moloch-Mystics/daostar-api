@@ -27,7 +27,7 @@ export const handler: APIGatewayProxyHandlerV2 = async (event) => {
   const query = `query GetActivityLogs($dao: String!) {
         activityUri(id: $dao) {
           id
-          activities {
+          activites {
             id
 						proposalId
 						member
@@ -46,7 +46,7 @@ export const handler: APIGatewayProxyHandlerV2 = async (event) => {
   const res = (await apiRequest(path, "POST", data)) as any;
   console.log({ res });
 
-  const activites = res.data.activityUri.activities;
+  const activites = res.data.activityUri.activites;
 
   console.log({ activites });
 

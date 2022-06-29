@@ -6,7 +6,7 @@ export function MyStack({ stack }: StackContext) {
     routes: {
       "GET /members/{id}": "functions/getMembers.handler",
       "GET /proposals/{id}": "functions/getProposals.handler",
-      "GET /acitvities/{id}": "functions/getActivityLogs.handler",
+      "GET /activities/{id}": "functions/getActivityLogs.handler",
     },
     // customDomain: {
     //     domainName: "sandbox.logos.xyz",

@@ -57,7 +57,7 @@ export const handler: APIGatewayProxyHandlerV2 = async (event) => {
           proposals {
             id
 						title
-						contentUri
+						contentURI
 						processed
             cancelled
             passed
