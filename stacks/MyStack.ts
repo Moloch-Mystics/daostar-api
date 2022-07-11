@@ -8,11 +8,11 @@ export function MyStack({ stack }: StackContext) {
       "GET /proposals/{id}": "functions/getProposals.handler",
       "GET /activities/{id}": "functions/getActivityLogs.handler",
     },
-    // customDomain: {
-    //     domainName: "sandbox.logos.xyz",
-    //     hostedZone: "sandbox.logos.xyz",
-    //     path: "api/v1",
-    // },
+    customDomain: {
+        domainName: "sandbox.logos.xyz",
+        hostedZone: "sandbox.logos.xyz",
+        path: "api/v1",
+    },
   });
 
   // Show the API endpoint in the output
