@@ -25,7 +25,7 @@ export const handler: APIGatewayProxyHandlerV2 = async (event) => {
     }
 
     const query = `query GetMembers($dao: String!) {
-        memberUri(id: $dao) {
+        moloches(id: $dao) {
           id
           members {
             memberAddress
@@ -33,7 +33,7 @@ export const handler: APIGatewayProxyHandlerV2 = async (event) => {
         }
       }`
 
-    const path = 'https://api.thegraph.com/subgraphs/name/alexkeating/daostar-moloch'
+    const path = 'https://api.thegraph.com/subgraphs/name/odyssy-automaton/daohaus-rinkeby'
 
     const data = {
         query,
