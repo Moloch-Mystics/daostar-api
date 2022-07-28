@@ -52,25 +52,23 @@ export const handler: APIGatewayProxyHandlerV2 = async (event) => {
   };
 
   const query = `query GetProposals($dao: String!) {
-        proposalUri(id: $dao) {
+        moloches(id: $dao) {
           id
           proposals {
             id
-						title
-						contentURI
 						processed
             cancelled
             passed
-            votingStarts
-            votingEnds
-            graceEnds
+            votingPeriodStarts
+            votingPeriodEnds
+            gracePeriodEnds
 						sponsored
           }
         }
       }`;
 
   const path =
-    "https://api.thegraph.com/subgraphs/name/alexkeating/daostar-moloch";
+    "https://api.thegraph.com/subgraphs/name/odyssy-automaton/daohaus-rinkeby";
 
   const data = {
     query,
@@ -89,16 +87,14 @@ export const handler: APIGatewayProxyHandlerV2 = async (event) => {
       p.processed,
       p.cancelled,
       p.passed,
-      p.votingStarts,
-      p.votingEnds,
-      p.graceEnds,
+      p.votingPeriodStarts,
+      p.votingPeriodEnds,
+      p.gracePeriodEnds,
       p.sponsored
     );
     return {
       id: p.id,
       type: "proposal",
-      name: p.title,
-      contentURI: p.contentURI,
       status: status,
     };
   });
